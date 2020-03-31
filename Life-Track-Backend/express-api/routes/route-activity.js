@@ -42,7 +42,6 @@ router.route('/add').post(function(req, res) {
     let activity = Object.assign(new ActivityModel(), req.body);
     console.log(activity);
     activities.push(activity);
-
 });
 
 router.delete('/:id', (req, res) => {
