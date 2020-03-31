@@ -1,0 +1,60 @@
+<div class="container border">
+
+    <div class="col-4 mx-auto">
+    <h3 class="text-center m-3"> Track activity! </h3>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="activityInputForm">
+
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Name of activity</mat-label>
+            <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+    </div>
+
+    <div class="row ">
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select placeholder="Category" formControlName="category">
+                <mat-option *ngFor="let category of showCategories" [value]="category">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Concurrency</mat-label>
+            <mat-select placeholder="Concurrency" formControlName="concurrency">
+                <mat-option *ngFor="let concurrent of showConcurrency" [value]="concurrent">
+                    {{concurrent.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a deadline</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="DeadlineDate" formControlName="deadlineDate">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>Udvid</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="fill">
+            <mat-label>Description of activity</mat-label>
+            <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+
+    <button type="submit" [disabled]="!activityInputForm.valid" class="btn btn-primary">Submit</button>
+
+</form>
+
+</div>
+</div>
