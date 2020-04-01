@@ -2,13 +2,15 @@
   "name": "mongodbconnect",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "connection.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.5.5"
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.7",
+    "validator": "^13.0.0"
   }
 }
