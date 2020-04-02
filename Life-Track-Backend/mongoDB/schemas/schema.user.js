@@ -4,7 +4,16 @@ let userSchema = {
     name: String,
     email: String,
     signedUpDate: Date,
-    password: String
+    password: String,
+    activities: [{
+        name: String,
+        category: String,
+        percentage: Number,
+        deadline: Date,
+        concurrent: String,
+        done: Boolean,
+        description: String
+    }]
 }
 
 module.exports = mongoose.model('User', userSchema, 'User');

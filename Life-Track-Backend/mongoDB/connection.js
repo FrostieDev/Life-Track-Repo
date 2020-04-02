@@ -6,19 +6,33 @@ let mongoose = require('mongoose');
 
 class Database {
     constructor() {
-        _connect();
+        this._connect();
     }
+
+    _connect() {
+        mongoose.connect(connectionString.Connection.uri, {
+                useNewUrlParser: true
+            })
+            .then(() => {
+                console.log('Database connection succesful')
+            })
+            .catch(err => {
+                console.error('Database connection eroor')
+            })
+    }
+
+    _disconnect() {
+        mongoose.disconnect()
+            .then(() =>
+                console.log('Disconnect succesful'))
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
 }
 
-function _connect() {
-    mongoose.connect(connectionString.Connection.uri)
-        .then(() => {
-            console.log('Database connection succesful')
-        })
-        .catch(err => {
-            console.error('Database connection eroor')
-        })
-}
 
 module.exports = new Database();
 

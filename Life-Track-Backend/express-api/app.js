@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+const routeUser = require('./routes/route-user');
 const routeActivity = require('./routes/route-activity');
 var ActivityModel = require('./models/model.activity');
 
@@ -34,5 +35,6 @@ app.listen(3000, () => {
 });
 
 app.use('/activity', routeActivity);
+app.use('/users', routeUser);
 
 module.exports = app;
