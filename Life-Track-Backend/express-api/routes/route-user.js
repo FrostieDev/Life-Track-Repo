@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var DBUser = require('../../mongoDB/dbQueries/queries.user');
+var DBActivity = require('../../mongoDB/dbQueries/queries.activity');
 var UserModel = require('../models/model.user');
 
 /* let activities = [{
@@ -72,6 +73,67 @@ router.route('/:id/delete').delete((req, res) => {
     DBUser.removeById(id);
 
     res.send('User is deleted');
+});
+
+router.route('/:id/activities/add').put(function(req, res) {
+    try {
+        DBActivity.insertActivityById(req.params.id, req.body);
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+});
+
+router.route('/:id/activities/:aid/update').put(function(req, res) {
+    try {
+        DBActivity.updateActivityById(req.params.id, req.params.aid, req.body)
+            .then((doc) => res.send(doc));
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+});
+
+router.get('/:id/activities/:aid', (req, res) => {
+    // 
+    const id = req.params.id;
+    const aid = req.params.aid;
+
+    try {
+        DBActivity.getActivityById(id, aid)
+            .then((user) => {
+                res.json(user);
+            })
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+    // Sending 404 when not found something is a good practice
+    //res.status(404).send('User not found');
+});
+
+router.get('/:id/activities/:aid/delete', (req, res) => {
+    // 
+    const id = req.params.id;
+    const aid = req.params.aid;
+
+    try {
+        DBActivity.deleteActivityById(id, aid)
+            .then((user) => {
+                res.json(user);
+            })
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+
+    // Sending 404 when not found something is a good practice
+    //res.status(404).send('User not found');
+
 });
 
 module.exports = router;
