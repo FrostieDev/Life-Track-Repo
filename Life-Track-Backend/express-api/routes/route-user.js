@@ -3,19 +3,6 @@ var router = express.Router();
 
 var DBUser = require('../../mongoDB/dbQueries/queries.user');
 var DBActivity = require('../../mongoDB/dbQueries/queries.activity');
-var UserModel = require('../models/model.user');
-
-/* let activities = [{
-    uid: "123",
-    name: "Homework",
-    category: "School",
-    percentage: 100,
-    deadline: "20/20/2020",
-    concurrent: "Daily",
-    done: false,
-    user: null,
-    description: "Read chapter 2 in Larman"
-}]; */
 
 router.get('/', (req, res) => {
     try {
@@ -23,7 +10,6 @@ router.get('/', (req, res) => {
             .then((users) => {
                 res.json(users);
             });
-
     } catch (err) {
         res.status(500).json({
             message: err.message
@@ -45,29 +31,33 @@ router.get('/:id', (req, res) => {
             message: err.message
         })
     }
-
-    // Sending 404 when not found something is a good practice
-    //res.status(404).send('User not found');
-
 });
 
 
 // Defined store route
 router.route('/add').post(function(req, res) {
-    //let user = Object.assign(new UserModel(), req.body);
     let user = req.body;
-    console.log('Route log + ');
-    console.log(user);
-    DBUser.insert(user);
+
+    try {
+        DBUser.insert(user)
+            .then((user) => {
+                res.json(user);
+            });
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
 });
 
-// 
 router.route('/:id/update').put(function(req, res) {
-    DBUser.updateById(req.params.id, req.body);
+    DBUser.updateById(req.params.id, req.body)
+        .then((user) => {
+            res.json(user);
+        })
 });
 
 router.route('/:id/delete').delete((req, res) => {
-    // 
     const id = req.params.id;
 
     DBUser.removeById(id);
@@ -111,8 +101,6 @@ router.get('/:id/activities/:aid', (req, res) => {
             message: err.message
         })
     }
-    // Sending 404 when not found something is a good practice
-    //res.status(404).send('User not found');
 });
 
 router.get('/:id/activities/:aid/delete', (req, res) => {
@@ -130,10 +118,6 @@ router.get('/:id/activities/:aid/delete', (req, res) => {
             message: err.message
         })
     }
-
-    // Sending 404 when not found something is a good practice
-    //res.status(404).send('User not found');
-
 });
 
 module.exports = router;

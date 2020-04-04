@@ -1,25 +1,13 @@
 let UserSchema = require('../schemas/schema.user');
 let conn = require('../connection');
 
-/* let tempUserEntity = new UserSchema({
-    name: "Finn",
-    email: "finn@pind.dk",
-    signedUpDate: "2020-05-18T16:00:00.000+00:00",
-    password: "123",
-    activities: {
-        name: "Reading",
-        category: "School",
-        percentage: 60,
-        deadline: new Date(),
-        concurrent: "Daily",
-        done: false,
-        description: "Read chapter 2 Larman"
-    }
-});
-
-let tempId = '5e85091b1c9d4400009206fc'; */
-
-function insert(tempUserEntity) {
+/**
+ * Inserts user into mongoDB.
+ * 
+ * @param {JSON} tempUserEntity 
+ * @returns JSON document
+ */
+async function insert(tempUserEntity) {
 
     let userEntity = new UserSchema({
         name: tempUserEntity.name,
@@ -28,15 +16,25 @@ function insert(tempUserEntity) {
         password: tempUserEntity.password
     });
 
-    userEntity.save()
-        .then(doc => {
-            console.log(doc);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    try {
+        userEntity.save()
+            .then(doc => {
+                return doc;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } catch (err) {
+        console.log(err);
+    }
 }
 
+/**
+ * Gets a user from mongoDB.
+ * 
+ * @param {string} id
+ * @returns JSON document
+ */
 async function getById(id) {
     try {
         const res = await UserSchema.find({
@@ -48,7 +46,11 @@ async function getById(id) {
     }
 }
 
-
+/**
+ * Gets all users from mongoDB.
+ * 
+ * @returns JSON document
+ */
 async function getAll() {
     try {
         const res = await UserSchema.find({
@@ -62,6 +64,13 @@ async function getAll() {
     }
 }
 
+/**
+ * Updates a user from mongoDB.
+ * 
+ * @param {string} id
+ * @param {JSON} json A complete JSON file of a user.
+ * @returns JSON document
+ */
 async function updateById(id, json) {
     try {
         const res = await UserSchema.findByIdAndUpdate({
@@ -80,6 +89,12 @@ async function updateById(id, json) {
     }
 }
 
+/**
+ * Removes a user from mongoDB.
+ * 
+ * @param {string} id
+ * @returns JSON document
+ */
 async function removeById(id) {
     try {
         const res = await UserSchema.findByIdAndRemove({
