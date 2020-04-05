@@ -78,6 +78,20 @@ async function deleteActivityById(id, aid) {
     }
 }
 
+/* async function getActivitiesById(id, aid) {
+
+    try {
+        const res = await UserSchema.findOne({
+            "activities._id": aid
+        }, {
+            "activities._id.$": aid
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+    }
+} */
+
 module.exports = {
     updateActivityById,
     insertActivityById,

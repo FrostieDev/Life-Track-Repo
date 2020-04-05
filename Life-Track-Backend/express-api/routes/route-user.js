@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     // 
     const id = req.params.id;
+    console.log(id);
 
     try {
         DBUser.getById(id)
@@ -67,7 +68,11 @@ router.route('/:id/delete').delete((req, res) => {
 
 router.route('/:id/activities/add').put(function(req, res) {
     try {
-        DBActivity.insertActivityById(req.params.id, req.body);
+        DBActivity.insertActivityById(req.params.id, req.body)
+            .then((doc) => {
+                res.send(doc);
+                console.log(doc);
+            });
     } catch (err) {
         res.status(500).json({
             message: err.message
@@ -85,6 +90,22 @@ router.route('/:id/activities/:aid/update').put(function(req, res) {
         })
     }
 });
+
+/* router.get('/:id/activities', (req, res) => {
+    // 
+    const id = req.params.id;
+
+    try {
+        DBActivity.getActivitiesById(id)
+            .then((user) => {
+                res.json(user);
+            })
+    } catch (err) {
+        res.status(500).json({
+            message: err.message
+        })
+    }
+}); */
 
 router.get('/:id/activities/:aid', (req, res) => {
     // 

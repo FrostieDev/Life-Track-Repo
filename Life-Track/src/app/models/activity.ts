@@ -1,16 +1,12 @@
-
-import { User } from './user';
-
 export class Activity {
     name: string;
-    category: Category;
+    category: string;
     percentage: number;
     deadline: Date;
-    concurrent: Concurrent;
+    concurrent: string;
     done: boolean;
-    user: User;
     description: string;
-  }
+}
 
 
 export enum Category {
