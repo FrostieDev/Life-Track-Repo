@@ -7,7 +7,8 @@ let activitySchema = {
     deadline: Date,
     concurrent: String,
     done: Boolean,
-    description: String
+    description: String,
+    creationDate: Date
 };
 
 module.exports = mongoose.model('Activity', activitySchema);

@@ -15,7 +15,8 @@ async function insertActivityById(id, activityJson) {
                     deadline: activityJson.deadline,
                     concurrent: activityJson.concurrent,
                     done: activityJson.done,
-                    description: activityJson.description
+                    description: activityJson.description,
+                    creationDate: new Date()
                 }
             }
         }, {
@@ -29,11 +30,6 @@ async function insertActivityById(id, activityJson) {
 
 // Only works if all activities have same fields.
 async function updateActivityById(id, aid, activityJson) {
-    var ObjectId = require('mongodb').ObjectID;
-
-    console.log(mongoose.Types.ObjectId.isValid(id));
-    console.log(mongoose.Types.ObjectId.isValid(aid));
-
     try {
         const res = await UserSchema.findOneAndUpdate({
             "_id": id,
@@ -78,6 +74,22 @@ async function deleteActivityById(id, aid) {
     }
 }
 
+//TODO:FIX
+async function getSortedActivitiesById(id) {
+    try {
+        const res = await UserSchema.find({
+            _id: id
+        }).sort({
+
+            'activities.creationDate': -1
+
+        }).limit(2).exec();
+        return res;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 /* async function getActivitiesById(id, aid) {
 
     try {
@@ -96,6 +108,7 @@ module.exports = {
     updateActivityById,
     insertActivityById,
     getActivityById,
-    deleteActivityById
+    deleteActivityById,
+    getSortedActivitiesById
 
 }

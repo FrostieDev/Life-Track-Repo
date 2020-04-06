@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Category, Concurrent, Activity } from 'src/app/models/activity';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
@@ -21,7 +21,10 @@ interface IConcurrent {
   templateUrl: './activity-input.component.html',
   styleUrls: ['./activity-input.component.css']
 })
+
 export class ActivityInputComponent implements OnInit {
+
+  @Output() update: EventEmitter<number> = new EventEmitter<number>(); //creating an output event
 
   showCategories: ICategory[] = [
     { value: Category.School, viewValue: 'School' },
@@ -58,11 +61,17 @@ export class ActivityInputComponent implements OnInit {
   }
 
   onSubmit() {
-    this.createActivity();
-    console.log(this.activity);
+    this.createActivity()
+      .then((result) => {
+        console.log(result);
+        this.notifyParent();
+        this.activityInputForm.reset();
+      }).catch((err) => {
+        console.log(err);
+      });;
   }
 
-  createActivity() {
+  async createActivity() {
 
     let tempUser: User = {
       id: "5e8642b650a815274cb469e6",
@@ -78,15 +87,33 @@ export class ActivityInputComponent implements OnInit {
       concurrent: this.activityInputForm.value.concurrency["viewValue"],
       description: this.activityInputForm.value.description,
       percentage: 100,
-      done: false
+      done: false,
+      creationDate: null // creationDate is handled backend side for correct time formatting. Server location dates.
     }
-
-    this.addActivityToDB(tempUser, this.activity);
+    try {
+      let result = this.addActivityToDB(tempUser, this.activity);
+      alert("Activity created!");
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+    return null;
   }
 
   addActivityToDB(user: User, activity: Activity) {
-    this.restAPIUserActivity.addActivity(user, activity).subscribe((data: {}) => {
-    })
+    this.restAPIUserActivity
+      .addActivity(user, activity)
+      .subscribe((data: any) => {
+        return data;
+      });
+  }
+
+  notifyParent() {
+    setTimeout(() => {
+      console.log("Notify parent component!");
+      this.update.emit(1);
+    }
+      , 1000);
   }
 
 }

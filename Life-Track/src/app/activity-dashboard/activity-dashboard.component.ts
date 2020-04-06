@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityDashboardComponent implements OnInit {
 
+  updates: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onUpdate(count) {
+    this.updates = this.updates + count;
   }
 
 }

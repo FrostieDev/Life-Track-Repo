@@ -6,6 +6,7 @@ export class Activity {
     concurrent: string;
     done: boolean;
     description: string;
+    creationDate: Date;
 }
 
 

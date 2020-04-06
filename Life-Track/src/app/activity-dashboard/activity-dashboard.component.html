@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <app-activity-input></app-activity-input>
+      <app-activity-input (update)='onUpdate($event)'></app-activity-input>
     </div>
 
 
     <div class="col">
-      <app-activities-latest></app-activities-latest>
+      <app-activities-latest [updates]="updates"></app-activities-latest>
     </div>
   </div>
 </div>

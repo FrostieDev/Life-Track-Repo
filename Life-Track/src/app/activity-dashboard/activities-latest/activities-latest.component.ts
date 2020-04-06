@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Activity } from 'src/app/models/activity';
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -16,22 +16,22 @@ import { RestApiUserActivityService } from '../../shared/rest-api-user-activity.
     ]),
   ],
 })
-export class ActivitiesLatestComponent implements OnInit {
+export class ActivitiesLatestComponent implements OnInit, OnChanges {
+
+  @Input() updates: number;
 
   dataSource = new MatTableDataSource<Activity>();
   columnsToDisplay = ['activity', 'percentage', 'deadline']; //Columns to display in the header
   expandedElement: Activity | null;
-  data: any;
   activities: Activity[] = [];
+  arrayEmpty: boolean = true; // To show message if no data.
 
   constructor(
     public restAPIUserActivity: RestApiUserActivityService
   ) { }
 
   ngOnInit(): void {
-    this.getActivities("5e8642b650a815274cb469e6")
-      .then();
-
+    this.getActivities("5e8642b650a815274cb469e6");
   }
 
   async getActivities(id: string) {
@@ -40,7 +40,11 @@ export class ActivitiesLatestComponent implements OnInit {
       this.convertUserActivitiesToActivities(data)
         .then(() => {
           this.dataSource.data = this.activities;
-          console.log(this.dataSource);
+          if (this.activities.length === 0) {
+            this.arrayEmpty = true;
+          } else {
+            this.arrayEmpty = false;
+          }
         });
 
     })
@@ -48,11 +52,17 @@ export class ActivitiesLatestComponent implements OnInit {
 
   async convertUserActivitiesToActivities(tempData) {
     const data: any[] = tempData[0].activities;
+    this.activities = [];
     for (var i in data) {
       let element: Activity;
       element = data[i];
       this.activities.push(element);
     }
+  }
+
+  ngOnChanges(updates): void {
+    this.activities = [];
+    this.ngOnInit();
   }
 
 }
