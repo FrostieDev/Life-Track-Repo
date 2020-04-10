@@ -1,18 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="../../assets/Life_Track.png" width="50" class="d-inline-block align-top">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav" routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{exact: true}">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/home">
+          <mat-icon aria-hidden="false" aria-label="home icon">home</mat-icon>
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/activity-dashboard">
+          <mat-icon aria-hidden="false" aria-label="alarm icon">alarm_add</mat-icon>
+          Activity dashboard
+        </a>
+      </li>
+    </ul>
 
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/login">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">vpn_key</mat-icon>
+          Login
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" routerLink="/signup">
+          <mat-icon aria-hidden="false" aria-label="sign up">person_add</mat-icon>
+          Signup
+        </a>
+      </li>
+    </ul>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" [routerLink]="['/home']" [routerLinkActive]="['/home']">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/activity-dashboard']" [routerLinkActive]="['/activity-dashboard']">Activity dashboard</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  </div>
+</nav>
