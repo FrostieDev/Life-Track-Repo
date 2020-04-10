@@ -29,10 +29,10 @@
     <div class="row">
       <div class="col-centered">
         <mat-form-field appearance="fill">
-          <mat-label>Concurrency</mat-label>
-          <mat-select placeholder="Concurrency" formControlName="concurrency">
-            <mat-option *ngFor="let concurrent of showConcurrency" [value]="concurrent">
-              {{concurrent.viewValue}}
+          <mat-label>Recurrent</mat-label>
+          <mat-select placeholder="Recurrent" formControlName="recurrent">
+            <mat-option *ngFor="let recurrent of showRecurrent" [value]="recurrent">
+              {{recurrent.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>

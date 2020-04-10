@@ -5,7 +5,7 @@ let activitySchema = {
     category: String,
     percentage: Number,
     deadline: Date,
-    concurrent: String,
+    recurrent: String,
     done: Boolean,
     description: String,
     creationDate: Date

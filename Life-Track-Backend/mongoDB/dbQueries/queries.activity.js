@@ -13,7 +13,7 @@ async function insertActivityById(id, activityJson) {
                     category: activityJson.category,
                     percentage: activityJson.percentage,
                     deadline: activityJson.deadline,
-                    concurrent: activityJson.concurrent,
+                    recurrent: activityJson.recurrent,
                     done: activityJson.done,
                     description: activityJson.description,
                     creationDate: new Date()

@@ -8,18 +8,6 @@ const routeUser = require('./routes/route-user');
 
 var app = express();
 
-let activities = [{
-    uid: "123",
-    name: "Homework",
-    category: "School",
-    percentage: 100,
-    deadline: "20/20/2020",
-    concurrent: "Daily",
-    done: true,
-    user: null,
-    description: "Read chapter 2 in Larman"
-}];
-
 app.use(cors());
 
 app.use(bodyParser.json());

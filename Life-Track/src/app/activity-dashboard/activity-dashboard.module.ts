@@ -15,10 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivityRecurrentOverviewComponent } from './activity-recurrent-overview/activity-recurrent-overview.component';
 
 
 @NgModule({
-  declarations: [ActivityDashboardComponent, ActivityInputComponent, ActivitiesLatestComponent],
+  declarations: [ActivityDashboardComponent, ActivityInputComponent, ActivitiesLatestComponent, ActivityRecurrentOverviewComponent],
   imports: [
     CommonModule,
     MatInputModule,

@@ -1,7 +1,7 @@
 <div class="container border">
   <div class="text-center m-3">
     <h2>Latest activities</h2>
-    <p>You have made {{updates}} activities</p>
+    <p>You have made {{updates}} activities in this session</p>
   </div>
   <div class="row">
 
@@ -36,8 +36,8 @@
                 [@detailExpand]="activity == expandedElement ? 'expanded' : 'collapsed'" style="overflow: hidden">
                 <div class="row">
                   <div class="col-sm">
-                    <p><b>Concurrency</b>
-                      {{activity.concurrent}}</p>
+                    <p><b>Recurrent</b>
+                      {{activity.recurrent}}</p>
                   </div>
                   <div class="col-sm">
                     <p><b>Category</b> {{activity.category}}</p>

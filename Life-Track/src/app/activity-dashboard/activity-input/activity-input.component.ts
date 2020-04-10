@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Category, Concurrent, Activity } from 'src/app/models/activity';
+import { Category, Recurrent, Activity } from 'src/app/models/activity';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 import { TEMPORARY_NAME } from '@angular/compiler/src/render3/view/util';
@@ -11,8 +11,8 @@ interface ICategory {
   viewValue: string;
 }
 
-interface IConcurrent {
-  value: Concurrent;
+interface IRecurrent {
+  value: Recurrent;
   viewValue: string;
 }
 
@@ -31,13 +31,13 @@ export class ActivityInputComponent implements OnInit {
     { value: Category.PersonalGoal, viewValue: 'Personal Goal' }
   ];
 
-  showConcurrency: IConcurrent[] = [
-    { value: Concurrent.No, viewValue: 'No' },
-    { value: Concurrent.Daily, viewValue: 'Daily' },
-    { value: Concurrent.Monthly, viewValue: 'Monthly' },
-    { value: Concurrent.Quarterly, viewValue: 'Quarterly' },
-    { value: Concurrent.HalfYearly, viewValue: 'Half Yearly' },
-    { value: Concurrent.Yearly, viewValue: 'Yearly' }
+  showRecurrent: IRecurrent[] = [
+    { value: Recurrent.No, viewValue: 'No' },
+    { value: Recurrent.Daily, viewValue: 'Daily' },
+    { value: Recurrent.Monthly, viewValue: 'Monthly' },
+    { value: Recurrent.Quarterly, viewValue: 'Quarterly' },
+    { value: Recurrent.HalfYearly, viewValue: 'Half Yearly' },
+    { value: Recurrent.Yearly, viewValue: 'Yearly' }
   ];
 
   public activityInputForm: FormGroup;
@@ -54,7 +54,7 @@ export class ActivityInputComponent implements OnInit {
       name: new FormControl('', [Validators.required, Validators.maxLength(40)]),
       deadlineDate: new FormControl(new Date(), [Validators.required]),
       category: new FormControl('', [Validators.required]),
-      concurrency: new FormControl('', [Validators.required]),
+      recurrent: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required, Validators.maxLength(240)])
     });
     console.log("activity input activated")
@@ -84,7 +84,7 @@ export class ActivityInputComponent implements OnInit {
       name: this.activityInputForm.value.name,
       deadline: this.activityInputForm.value.deadlineDate,
       category: this.activityInputForm.value.category["viewValue"],
-      concurrent: this.activityInputForm.value.concurrency["viewValue"],
+      recurrent: this.activityInputForm.value.recurrent["viewValue"],
       description: this.activityInputForm.value.description,
       percentage: 100,
       done: false,

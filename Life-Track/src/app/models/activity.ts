@@ -3,7 +3,7 @@ export class Activity {
     category: string;
     percentage: number;
     deadline: Date;
-    concurrent: string;
+    recurrent: string;
     done: boolean;
     description: string;
     creationDate: Date;
@@ -15,7 +15,7 @@ export enum Category {
     PersonalGoal
 }
 
-export enum Concurrent {
+export enum Recurrent {
     No,
     Daily,
     Weekly,
