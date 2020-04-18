@@ -50,8 +50,8 @@ export class RestApiUserActivityService {
       )
   }
 
-  addActivity(user: User, activity: Activity): Observable<Activity> {
-    return this.http.put<Activity>(this.apiURL + '/' + user.id + '/activities/add', JSON.stringify(activity), this.httpOptions)
+  addActivity(id: string, activity: Activity): Observable<Activity> {
+    return this.http.put<Activity>(this.apiURL + '/' + id + '/activities/add', JSON.stringify(activity), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)

@@ -23,20 +23,55 @@
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/login">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">vpn_key</mat-icon>
-          Login
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" routerLink="/signup">
-          <mat-icon aria-hidden="false" aria-label="sign up">person_add</mat-icon>
-          Signup
-        </a>
-      </li>
-    </ul>
+    <ng-template [ngIf]="!loggedIn" [ngIfElse]="elseBlock" class="float-right">
+
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/login">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">vpn_key</mat-icon>
+            Login
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/signup">
+            <mat-icon aria-hidden="false" aria-label="sign up">person_add</mat-icon>
+            Signup
+          </a>
+        </li>
+      </ul>
+
+    </ng-template>
+
+
+    <ng-template #elseBlock>
+
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+
+        <li>
+          <a>
+            <mat-icon aria-hidden="false" aria-label="Profile icon">perm_identity</mat-icon>
+            Hello {{name}}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/profile">
+            <mat-icon aria-hidden="false" aria-label="Profile icon">perm_identity</mat-icon>
+            Profile
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="signOut()">
+            <mat-icon aria-hidden="false" aria-label="Log out icon">exit_to_app</mat-icon>
+            Log out
+          </a>
+        </li>
+
+      </ul>
+
+    </ng-template>
+
 
   </div>
 </nav>

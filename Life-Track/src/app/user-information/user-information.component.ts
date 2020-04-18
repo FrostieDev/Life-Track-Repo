@@ -16,7 +16,7 @@ export class UserInformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser("5e8642b650a815274cb469e6");
+    this.getUser(localStorage.getItem("userId").replace(/['"]+/g, ''));
   }
 
   getUser(id: string) {

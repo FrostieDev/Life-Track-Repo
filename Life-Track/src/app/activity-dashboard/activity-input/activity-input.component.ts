@@ -73,13 +73,6 @@ export class ActivityInputComponent implements OnInit {
 
   async createActivity() {
 
-    let tempUser: User = {
-      id: "5e8642b650a815274cb469e6",
-      name: "tempname",
-      email: "maillul",
-      signedUpDate: new Date
-    }
-
     this.activity = {
       name: this.activityInputForm.value.name,
       deadline: this.activityInputForm.value.deadlineDate,
@@ -90,8 +83,12 @@ export class ActivityInputComponent implements OnInit {
       done: false,
       creationDate: null // creationDate is handled backend side for correct time formatting. Server location dates.
     }
+
     try {
-      let result = this.addActivityToDB(tempUser, this.activity);
+      let result = this.addActivityToDB(
+        localStorage.getItem("userId").replace(/['"]+/g, ''),
+        this.activity);
+
       alert("Activity created!");
       return result;
     } catch (err) {
@@ -100,9 +97,9 @@ export class ActivityInputComponent implements OnInit {
     return null;
   }
 
-  addActivityToDB(user: User, activity: Activity) {
+  addActivityToDB(id: string, activity: Activity) {
     this.restAPIUserActivity
-      .addActivity(user, activity)
+      .addActivity(id, activity)
       .subscribe((data: any) => {
         return data;
       });

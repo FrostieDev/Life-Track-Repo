@@ -18,7 +18,7 @@ import { RestApiUserActivityService } from '../../shared/rest-api-user-activity.
 })
 export class ActivitiesLatestComponent implements OnInit, OnChanges {
 
-  @Input() updates: number;
+  @Input() updates: number; // To update list, when changes comes in from another component.
 
   dataSource = new MatTableDataSource<Activity>();
   columnsToDisplay = ['activity', 'percentage', 'deadline']; //Columns to display in the header
@@ -31,7 +31,7 @@ export class ActivitiesLatestComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    this.getActivities("5e8642b650a815274cb469e6");
+    this.getActivities(localStorage.getItem("userId").replace(/['"]+/g, ''));
   }
 
   async getActivities(id: string) {

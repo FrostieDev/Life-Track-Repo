@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
+const expressJwt = require('express-jwt');
 
 var DBUser = require('../../mongoDB/dbQueries/queries.user');
 var DBActivity = require('../../mongoDB/dbQueries/queries.activity');
+
+const checkIfAuthenticated = expressJwt({
+    secret: 'mysecret'
+});
 
 router.get('/', (req, res) => {
     try {
@@ -17,10 +22,12 @@ router.get('/', (req, res) => {
     }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', checkIfAuthenticated, (req, res) => {
     // 
     const id = req.params.id;
     console.log(id);
+    console.log(checkIfAuthenticated);
+    console.log(req.headers);
 
     try {
         DBUser.getById(id)
@@ -33,7 +40,6 @@ router.get('/:id', (req, res) => {
         })
     }
 });
-
 
 // Defined store route
 router.route('/add').post(function(req, res) {
