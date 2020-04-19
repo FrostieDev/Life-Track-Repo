@@ -18,6 +18,7 @@ import { UserInformationComponent } from './user-information/user-information.co
 
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { CanActivateService } from './shared/routeGuard/can-activate.service';
+import { ShowQuoteComponent } from './shared/quote/show-quote/show-quote.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CanActivateService } from './shared/routeGuard/can-activate.service';
     HomeComponent,
     NavHeadComponent,
     NavFootComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    ShowQuoteComponent
   ],
   imports: [
     BrowserModule,

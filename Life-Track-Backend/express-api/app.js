@@ -6,6 +6,7 @@ var cors = require('cors');
 
 const routeUser = require('./routes/route-user');
 const routerAuth = require('./routes/route-auth');
+const routerQuote = require('./routes/route-quote');
 
 var app = express();
 
@@ -25,5 +26,7 @@ app.listen(3000, () => {
 app.use('/users', routeUser);
 
 app.use('/auth', routerAuth);
+
+app.use('/quote', routerQuote);
 
 module.exports = app;

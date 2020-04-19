@@ -9,14 +9,13 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 
+/*** ========================================
+   CRUD Methods for consuming RESTful API
+ =========================================*/
 export class RestApiUserActivityService {
-  apiURL = 'http://localhost:3000/users';
+  private apiURL = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
-
-  /*========================================
-     CRUD Methods for consuming RESTful API
-   =========================================*/
 
   // Http Options
   httpOptions = {
