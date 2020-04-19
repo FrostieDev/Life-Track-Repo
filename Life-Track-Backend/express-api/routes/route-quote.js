@@ -24,8 +24,9 @@ router.get('/get', (req, res) => {
 });
 
 function formatJson(data) {
+    //TODO: Find a fix for syntaxerror with \'
     //Incoming JSON is badly formatted, so need a hacky way to cope. Using ?, ()
-    let oldObject = JSON.parse(data.replace("?", "").replace("(", "").replace(")", "").replace("\'", ""));
+    let oldObject = JSON.parse(data.replace("?", "").replace("(", "").replace(")", "").replace("\'", "").replace("\\"));
     let newObject = {
         quote: oldObject.quoteText,
         author: oldObject.quoteAuthor,

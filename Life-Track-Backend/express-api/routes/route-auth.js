@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
         DBAuth.getUserAuth(email)
             .then((user) => {
                 if (user[0].password == password) {
-                    const expiration = 120;
+                    const expiration = 1000;
                     const secret = 'mysecret';
                     var tempUserID = user[0]._id.toString()
                     var tempName = user[0].name.toString()
