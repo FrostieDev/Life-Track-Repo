@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
+import { UserAuth } from '../models/userAuth';
 import * as moment from "moment";
 import { tap } from 'rxjs/operators';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
@@ -44,6 +45,15 @@ export class AuthService {
     }
 
     return this.http.post<User>(this.apiURL + '/login', { email, password }, requestOptions)
+      .pipe(tap(res => this.setSession(res)));
+  }
+
+  signUp(email: string, name: string, password: string) {
+    const requestOptions: Object = { // Will get an HTTP error if not. Returns text instead of JSON.
+      responseType: 'text'
+    }
+
+    return this.http.post<UserAuth>(this.apiURL + '/signup', { email, name, password }, requestOptions)
       .pipe(tap(res => this.setSession(res)));
   }
 

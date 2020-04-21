@@ -1,4 +1,5 @@
 let UserAuthSchema = require('../schemas/schema.userAuth');
+let UserSchema = require('../schemas/schema.user');
 let conn = require('../connection');
 
 /**
@@ -18,7 +19,31 @@ async function getUserAuth(email) {
     }
 }
 
+async function insertUserAuth(tempUserEntity) {
+
+    let userEntity = new UserSchema({
+        name: tempUserEntity.name,
+        email: tempUserEntity.email,
+        signedUpDate: new Date(),
+        password: tempUserEntity.password
+    });
+    console.log("Starting insert");
+
+    return new Promise((resolve, reject) => {
+        userEntity.save()
+            .then(() => {
+                console.log(tempUserEntity);
+                resolve(getUserAuth(tempUserEntity.email));
+            })
+            .catch(err => {
+                reject(err);
+                console.log(err);
+            });
+    });
+}
+
 
 module.exports = {
-    getUserAuth
+    getUserAuth,
+    insertUserAuth
 }

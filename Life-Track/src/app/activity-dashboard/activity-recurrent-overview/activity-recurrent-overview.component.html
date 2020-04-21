@@ -1,18 +1,72 @@
 <div class="container">
   <div class="row">
+
+    <!-- Daily -->
     <div class="col border">
       <div class="text-center m-3">
         <h2>Daily activties</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let activity of sortedActivities["Daily"]'>
+              <td>{{activity.name}}</td>
+              <td>{{activity.category}}</td>
+              <td>{{activity.description}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
+    <!-- Weekly -->
     <div class="col border">
       <div class="text-center m-3">
         <h2>Weekly activties</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let activity of sortedActivities["Weekly"]'>
+              <td>{{activity.name}}</td>
+              <td>{{activity.category}}</td>
+              <td>{{activity.description}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
+    <!-- Monthly -->
     <div class="col border">
       <div class="text-center m-3">
         <h2>Monthly activties</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let activity of sortedActivities["Monthly"]'>
+              <td>{{activity.name}}</td>
+              <td>{{activity.category}}</td>
+              <td>{{activity.description}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 

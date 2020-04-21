@@ -20,7 +20,7 @@ export class UserInformationComponent implements OnInit {
   }
 
   getUser(id: string) {
-    this.restAPIUserActivity.getUser(id).subscribe((data: any) => {
+    this.restAPIUserActivity.getUser(id).then((data: any) => {
       this.user = data[0];
     })
   }

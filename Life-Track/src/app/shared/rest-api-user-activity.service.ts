@@ -32,12 +32,12 @@ export class RestApiUserActivityService {
       )
   }
 
-  getUser(id: string): Observable<User> {
+  getUser(id: string): Promise<User> {
     return this.http.get<User>(this.apiURL + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
-      )
+      ).toPromise();
   }
 
   // HttpClient API post() method => Create employee

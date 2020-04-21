@@ -34,6 +34,7 @@ export class ActivityInputComponent implements OnInit {
   showRecurrent: IRecurrent[] = [
     { value: Recurrent.No, viewValue: 'No' },
     { value: Recurrent.Daily, viewValue: 'Daily' },
+    { value: Recurrent.Weekly, viewValue: 'Weekly' },
     { value: Recurrent.Monthly, viewValue: 'Monthly' },
     { value: Recurrent.Quarterly, viewValue: 'Quarterly' },
     { value: Recurrent.HalfYearly, viewValue: 'Half Yearly' },
@@ -57,7 +58,6 @@ export class ActivityInputComponent implements OnInit {
       recurrent: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required, Validators.maxLength(240)])
     });
-    console.log("activity input activated")
   }
 
   onSubmit() {
@@ -79,7 +79,7 @@ export class ActivityInputComponent implements OnInit {
       category: this.activityInputForm.value.category["viewValue"],
       recurrent: this.activityInputForm.value.recurrent["viewValue"],
       description: this.activityInputForm.value.description,
-      percentage: 100,
+      percentage: 0,
       done: false,
       creationDate: null // creationDate is handled backend side for correct time formatting. Server location dates.
     }
@@ -106,11 +106,11 @@ export class ActivityInputComponent implements OnInit {
   }
 
   notifyParent() {
-    setTimeout(() => {
+    setTimeout(() => { // Let backend have some time
       console.log("Notify parent component!");
       this.update.emit(1);
     }
-      , 1000);
+      , 500);
   }
 
 }

@@ -7,13 +7,13 @@
 
 
     <div class="col">
-      <app-activities-latest [updates]="updates"></app-activities-latest>
+      <app-activities-latest [updates]="updates" [activities]="activities"></app-activities-latest>
     </div>
   </div>
 
   <div class="row mt-3">
     <div class="col">
-      <app-activity-recurrent-overview></app-activity-recurrent-overview>
+      <app-activity-recurrent-overview [sortedActivities]="sortedActivities"></app-activity-recurrent-overview>
     </div>
   </div>
 

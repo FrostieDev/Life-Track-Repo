@@ -12,7 +12,7 @@ async function insert(tempUserEntity) {
     let userEntity = new UserSchema({
         name: tempUserEntity.name,
         email: tempUserEntity.email,
-        signedUpDate: tempUserEntity.signedUpDate,
+        signedUpDate: new Date(),
         password: tempUserEntity.password
     });
 
