@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
+//Custom components
 import { ActivityDashboardComponent } from './activity-dashboard.component';
 import { ActivityInputComponent } from './activity-input/activity-input.component';
 import { ActivitiesLatestComponent } from './activities-latest/activities-latest.component';
+import { ActivityRecurrentOverviewComponent } from './activity-recurrent-overview/activity-recurrent-overview.component';
+import { ActivityModalComponent } from './activity-modal/activity-modal.component';
 
 //Material inputs
 import { MatInputModule } from '@angular/material/input';
@@ -15,11 +19,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivityRecurrentOverviewComponent } from './activity-recurrent-overview/activity-recurrent-overview.component';
+
+//Modal
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
-  declarations: [ActivityDashboardComponent, ActivityInputComponent, ActivitiesLatestComponent, ActivityRecurrentOverviewComponent],
+  declarations: [ActivityDashboardComponent, ActivityInputComponent, ActivitiesLatestComponent, ActivityRecurrentOverviewComponent, ActivityModalComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -30,7 +37,9 @@ import { ActivityRecurrentOverviewComponent } from './activity-recurrent-overvie
     ReactiveFormsModule,
     MatExpansionModule,
     MatTableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class ActivityDashboardModule { }

@@ -9,15 +9,16 @@
           <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Description</th>
+              <th scope="col">#</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Daily"]'>
               <td>{{activity.name}}</td>
-              <td>{{activity.category}}</td>
-              <td>{{activity.description}}</td>
+              <td> <button (click)="deleteActivity(activity._id, activity.name)" type="button"
+                  class="btn btn-secondary">
+                  <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
+                </button></td>
             </tr>
           </tbody>
         </table>
@@ -32,15 +33,16 @@
           <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Description</th>
+              <th scope="col">#</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Weekly"]'>
               <td>{{activity.name}}</td>
-              <td>{{activity.category}}</td>
-              <td>{{activity.description}}</td>
+              <td> <button (click)="deleteActivity(activity._id, activity.name)" type="button"
+                  class="btn btn-secondary">
+                  <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
+                </button></td>
             </tr>
           </tbody>
         </table>
@@ -55,15 +57,15 @@
           <thead>
             <tr>
               <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Description</th>
+              <th scope="col">#</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Monthly"]'>
               <td>{{activity.name}}</td>
-              <td>{{activity.category}}</td>
-              <td>{{activity.description}}</td>
+              <td> <button (click)="openModal()" type="button" class="btn btn-secondary">
+                  <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
+                </button></td>
             </tr>
           </tbody>
         </table>

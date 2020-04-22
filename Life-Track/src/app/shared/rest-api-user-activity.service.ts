@@ -57,6 +57,16 @@ export class RestApiUserActivityService {
       )
   }
 
+  deleteActivity(_id: string, _aid: string) {
+    let reqUrl = this.apiURL + '/' + _id + '/activities/' + _aid + '/delete';
+    console.log("Requesting " + reqUrl);
+    return this.http.put<User>(reqUrl, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
 
   // Error handling 
   handleError(error) {

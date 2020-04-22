@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
     <img src="../../assets/Life_Track.png" width="50" class="d-inline-block align-top">
   </a>
@@ -17,7 +17,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" routerLink="/home">
-          <mat-icon aria-hidden="false" aria-label="home icon">help</mat-icon>
+          <mat-icon aria-hidden="false" aria-label="home icon">help_outline</mat-icon>
           About
         </a>
       </li>
@@ -47,12 +47,10 @@
 
       <ul class="navbar-nav ml-auto nav-flex-icons">
 
-        <li>
-          <a>
-            <mat-icon aria-hidden="false" aria-label="Profile icon">perm_identity</mat-icon>
-            Hello {{name}}
-          </a>
-        </li>
+        <span class="navbar-text">
+          <mat-icon aria-hidden="false" aria-label="Profile icon">insert_emoticon</mat-icon>
+          Hello {{name}}
+        </span>
 
         <li class="nav-item">
           <a class="nav-link" href="#" routerLink="/profile">
@@ -63,7 +61,7 @@
 
         <li class="nav-item">
           <a class="nav-link" href="#" routerLink="/activity-dashboard">
-            <mat-icon aria-hidden="false" aria-label="alarm icon">alarm_add</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="alarm icon">dashboard</mat-icon>
             Activity dashboard
           </a>
         </li>

@@ -132,8 +132,7 @@ router.get('/:id/activities/:aid', (req, res) => {
     }
 });
 
-router.get('/:id/activities/:aid/delete', (req, res) => {
-    // 
+router.route('/:id/activities/:aid/delete').put(function(req, res) {
     const id = req.params.id;
     const aid = req.params.aid;
 

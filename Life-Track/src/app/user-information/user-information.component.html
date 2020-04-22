@@ -1,5 +1,10 @@
-<p>user-information works!</p>
-
-<p> User: {{user.name}} </p>
-<p> Email: {{user.email}} </p>
-<p> Signed up: {{user.signedUpDate}}</p>
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title"> Your information </h4>
+      <p class="card-text"> User: {{user.name}} </p>
+      <p class="card-text"> Email: {{user.email}} </p>
+      <p class="card-text"> Signed up: {{user.signedUpDate | date: 'd MMM, y, H:mm:ss'}}</p>
+    </div>
+  </div>
+</div>

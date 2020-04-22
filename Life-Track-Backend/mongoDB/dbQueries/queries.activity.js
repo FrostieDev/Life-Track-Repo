@@ -60,13 +60,18 @@ async function getActivityById(id, aid) {
     }
 }
 
+//TODO: Deletes user instead of activity
 async function deleteActivityById(id, aid) {
 
     try {
-        const res = await UserSchema.findOneAndDelete({
-            "activities._id": aid
+        const res = await UserSchema.findByIdAndUpdate({
+            "_id": id
         }, {
-            "activities._id.$": aid
+            $pull: {
+                activities: {
+                    '_id': aid
+                }
+            }
         });
         return res;
     } catch (err) {
