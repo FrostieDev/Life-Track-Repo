@@ -1,1 +1,12 @@
-<p>activity-modal works!</p>
+<div>
+  <header>
+    <h3>{{dataFromParentComponent.name}}</h3>
+  </header>
+  <section>
+    <p>{{dataFromParentComponent.description}}</p>
+  </section>
+  <footer>
+    <button type="button" class="btn btn-danger m-2" (click)="deleteActivity()">Delete</button>
+    <button type="button" class="btn btn-primary m-2" (click)="closeModal()">Go back</button>
+  </footer>
+</div>

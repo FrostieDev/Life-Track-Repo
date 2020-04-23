@@ -14,7 +14,7 @@ export class ActivityRecurrentOverviewComponent implements OnInit {
 
   @Input() sortedActivities: IKeyValue;
 
-  constructor(private restAPIUserActivity: RestApiUserActivityService, public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sortedActivities
@@ -24,24 +24,15 @@ export class ActivityRecurrentOverviewComponent implements OnInit {
     console.log(this.sortedActivities);
   }
 
-  deleteActivity(_aid: string, _name: string) {
-    console.log("Trying to delete activity");
-    this.restAPIUserActivity.deleteActivity(localStorage.getItem("userId").replace(/['"]+/g, ''), _aid)
-      .subscribe((data: any) => {
-        alert("Deleted " + _name);
-        return data;
-      });
-  }
   // https://medium.com/swlh/how-to-create-a-modal-dialog-component-in-angular-8-88028d909be0
-  openModal() {
+  openModal(_activity: any) {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
-    dialogConfig.id = "modal-component";
-    dialogConfig.height = "350px";
-    dialogConfig.width = "600px";
+    dialogConfig.id = "activity-modal-component";
+    dialogConfig.data = _activity;
     // https://material.angular.io/components/dialog/overview
-    const modalDialog = this.matDialog.open(ActivityModalComponent, dialogConfig);
+    this.matDialog.open(ActivityModalComponent, dialogConfig);
   }
 
 }

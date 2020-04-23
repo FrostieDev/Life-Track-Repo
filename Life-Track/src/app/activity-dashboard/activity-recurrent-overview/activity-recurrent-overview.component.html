@@ -15,8 +15,7 @@
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Daily"]'>
               <td>{{activity.name}}</td>
-              <td> <button (click)="deleteActivity(activity._id, activity.name)" type="button"
-                  class="btn btn-secondary">
+              <td> <button (click)="openModal(activity)" type="button" class="btn btn-secondary">
                   <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
                 </button></td>
             </tr>
@@ -39,8 +38,7 @@
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Weekly"]'>
               <td>{{activity.name}}</td>
-              <td> <button (click)="deleteActivity(activity._id, activity.name)" type="button"
-                  class="btn btn-secondary">
+              <td> <button (click)="openModal(activity)" type="button" class="btn btn-secondary">
                   <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
                 </button></td>
             </tr>
@@ -63,7 +61,7 @@
           <tbody>
             <tr *ngFor='let activity of sortedActivities["Monthly"]'>
               <td>{{activity.name}}</td>
-              <td> <button (click)="openModal()" type="button" class="btn btn-secondary">
+              <td> <button (click)="openModal(activity)" type="button" class="btn btn-secondary">
                   <mat-icon aria-hidden="false" aria-label="home icon">settings</mat-icon>
                 </button></td>
             </tr>
