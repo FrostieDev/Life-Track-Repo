@@ -15,6 +15,7 @@ export class ActivityDashboardComponent implements OnInit {
   updates: number = 0;
   activities: Activity[] = [];
   sortedActivities: IKeyValue = {};
+  updateMsgs: string[] = [];
 
   constructor(private restAPIUserActivity: RestApiUserActivityService) {
 
@@ -33,7 +34,28 @@ export class ActivityDashboardComponent implements OnInit {
 
   onUpdate(count) {
     this.updates = this.updates + count;
-    this.getActivities(this.id);
+    this.getActivities(this.id)
+      .then((_activities) => {
+        this.sortActivitiesByRecurrence(_activities)
+          .then((_sortedActivities) => {
+            this.sortedActivities = _sortedActivities;
+          });
+      });
+  }
+
+  async onModification(_updateMsg: string) {
+    this.updateMsgs.push(_updateMsg);
+    this.onUpdate(0);
+
+    let self = this;
+
+    setTimeout(function () {
+      for (let i = 0; i < self.updateMsgs.length; i++) {
+        if (_updateMsg == self.updateMsgs[i]) {
+          self.updateMsgs.splice(i);
+        }
+      }
+    }, 5000);
   }
 
   async getActivities(id: string) {

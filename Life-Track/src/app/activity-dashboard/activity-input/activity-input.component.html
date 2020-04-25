@@ -30,11 +30,30 @@
       <div class="col-centered">
         <mat-form-field appearance="fill">
           <mat-label>Recurrent</mat-label>
-          <mat-select placeholder="Recurrent" formControlName="recurrent">
+          <mat-select placeholder="Recurrent" formControlName="recurrent"
+            (ngModelChange)="changeRecurrentInput($event)">
             <mat-option *ngFor="let recurrent of showRecurrent" [value]="recurrent">
               {{recurrent.viewValue}}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="showProgressionField">
+      <div class="col-centered">
+        <mat-form-field appearance="fill">
+          <mat-label>Progression</mat-label>
+          <mat-select placeholder="Progression" formControlName="progression">
+            <mat-option *ngFor="let progression of showProgression" [value]="progression">
+              {{progression.viewValue}}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="activityInputForm.controls.progression.hasError('recurrentValidatorError')" class="text-danger">
+            Please fill in
+            progression.
+          </div>
         </mat-form-field>
       </div>
     </div>

@@ -1,4 +1,5 @@
 export class Activity {
+    _id: string;
     name: string;
     category: string;
     percentage: number;
@@ -11,16 +12,22 @@ export class Activity {
 
 
 export enum Category {
-    School,
-    PersonalGoal
+    School = "School",
+    PersonalGoal = "Personal Goal"
 }
 
 export enum Recurrent {
-    No,
-    Daily,
-    Weekly,
-    Monthly,
-    Quarterly,
-    HalfYearly,
-    Yearly
+    No = "No",
+    Daily = "Daily",
+    Weekly = "Weekly",
+    Monthly = "Monthly",
+    Quarterly = "Quarterly",
+    HalfYearly = "Half Yearly",
+    Yearly = "Yearly"
+}
+
+export enum Progression {
+    Repetition = "Repetition",
+    Percentage = "Percentage",
+    Time = "Time"
 }

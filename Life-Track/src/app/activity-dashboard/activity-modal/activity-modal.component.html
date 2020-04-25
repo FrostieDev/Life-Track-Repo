@@ -3,7 +3,38 @@
     <h3>{{dataFromParentComponent.name}}</h3>
   </header>
   <section>
-    <p>{{dataFromParentComponent.description}}</p>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h6>Description</h6>
+        <p>{{dataFromParentComponent.description}}</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Category</h6>
+        <p>{{dataFromParentComponent.category}}</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Percentage done</h6>
+        <p>{{dataFromParentComponent.percentage}}%</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Deadline</h6>
+        <p>{{dataFromParentComponent.deadline | date: 'd MMM, y, H:mm:ss'}}</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Recurrent</h6>
+        <p>{{dataFromParentComponent.recurrent}}</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Completed</h6>
+        <p>{{dataFromParentComponent.done}}</p>
+      </li>
+      <li class="list-group-item">
+        <h6>Date added</h6>
+        <p>{{dataFromParentComponent.creationDate | date: 'd MMM, y, H:mm:ss'}}</p>
+      </li>
+    </ul>
+
   </section>
   <footer>
     <button type="button" class="btn btn-danger m-2" (click)="deleteActivity()">Delete</button>
