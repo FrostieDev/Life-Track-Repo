@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActivityInputComponent } from './activity-input.component';
+import { ActivityInputModalComponent } from './activity-input-modal.component';
 
 describe('ActivityInputComponent', () => {
-  let component: ActivityInputComponent;
-  let fixture: ComponentFixture<ActivityInputComponent>;
+  let component: ActivityInputModalComponent;
+  let fixture: ComponentFixture<ActivityInputModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActivityInputComponent ]
+      declarations: [ActivityInputModalComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ActivityInputComponent);
+    fixture = TestBed.createComponent(ActivityInputModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

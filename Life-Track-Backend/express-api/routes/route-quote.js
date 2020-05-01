@@ -5,7 +5,7 @@ const https = require('https');
 router.get('/get', (req, res) => {
     console.log("Getting quote");
 
-    https.get('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?', (resp) => {
+    https.get('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json&json=?', (resp) => {
         let data = '';
 
         // A chunk of data has been recieved.
@@ -24,9 +24,7 @@ router.get('/get', (req, res) => {
 });
 
 function formatJson(data) {
-    //TODO: Find a fix for syntaxerror with \'
-    //Incoming JSON is badly formatted, so need a hacky way to cope. Using ?, ()
-    let oldObject = JSON.parse(data.replace("?", "").replace("(", "").replace(")", "").replace("\'", "").replace("\\"));
+    let oldObject = JSON.parse(data);
     let newObject = {
         quote: oldObject.quoteText,
         author: oldObject.quoteAuthor,

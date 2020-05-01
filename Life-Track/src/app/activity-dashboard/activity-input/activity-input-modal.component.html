@@ -1,8 +1,8 @@
-<div class="border">
+<div class="border pl-5 pr-5">
 
   <h3 class="text-center m-3"> Track activity! </h3>
 
-  <form (ngSubmit)="onSubmit()" [formGroup]="activityInputForm">
+  <form #formDirective="ngForm" (ngSubmit)="onSubmit()" [formGroup]="activityInputForm">
 
     <div class="row">
       <div class="col-centered">
@@ -45,12 +45,39 @@
       <div class="col-centered">
         <mat-form-field appearance="fill">
           <mat-label>Progression</mat-label>
-          <mat-select placeholder="Progression" formControlName="progression">
+          <mat-select placeholder="Progression" formControlName="progression"
+            (ngModelChange)="changeProgressionInput($event)">
             <mat-option *ngFor="let progression of showProgression" [value]="progression">
               {{progression.viewValue}}
             </mat-option>
           </mat-select>
-          <div *ngIf="activityInputForm.controls.progression.hasError('recurrentValidatorError')" class="text-danger">
+          <div *ngIf="activityInputForm.hasError('recurrentValidatorError')" class="text-danger">
+            Please fill in
+            progression.
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="showExpectedTimeField">
+      <div class="col-centered">
+        <mat-form-field appearance="fill">
+          <mat-label>How many minutes?</mat-label>
+          <input matInput placeholder="ExpectedTime" formControlName="expectedTime" type="number">
+          <div *ngIf="activityInputForm.hasError('progressionValidatorError')" class="text-danger">
+            Please fill in
+            time.
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="showExpectedRepetitionField">
+      <div class="col-centered">
+        <mat-form-field appearance="fill">
+          <mat-label>How many repetitions?</mat-label>
+          <input matInput placeholder="ExpectedRepetition" formControlName="expectedRepetition" type="number">
+          <div *ngIf="activityInputForm.hasError('progressionValidatorError')" class="text-danger">
             Please fill in
             progression.
           </div>
@@ -61,11 +88,21 @@
     <div class="row">
       <div class="col-centered">
         <mat-form-field appearance="fill">
-          <mat-label>Choose a deadline</mat-label>
+          <mat-label>Choose a deadline date</mat-label>
           <input matInput [matDatepicker]="picker" placeholder="DeadlineDate" formControlName="deadlineDate">
           <mat-datepicker-toggle matSuffix [for]="picker">
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-centered">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose time of day</mat-label>
+          <input matInput placeholder="TimeOfDay" formControlName="timeOfDay" type="time">
         </mat-form-field>
       </div>
     </div>
@@ -81,8 +118,11 @@
 
     <div class="row mb-2">
       <div class="col-centered">
-        <button type="submit" [disabled]="!activityInputForm.valid" class="btn btn-primary">Submit <mat-icon
+        <button type="submit" [disabled]="!activityInputForm.valid" class="btn btn-primary m-2">Submit <mat-icon
             aria-hidden="false" aria-label="home icon">check_circle_outline</mat-icon> </button>
+        <button type="button" (click)="closeModal(null)" class="btn btn-danger m-2"> Cancel <mat-icon
+            aria-hidden="false" aria-label="home icon">close
+          </mat-icon> </button>
       </div>
     </div>
 

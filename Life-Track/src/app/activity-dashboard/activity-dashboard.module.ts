@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 //Custom components
 import { ActivityDashboardComponent } from './activity-dashboard.component';
-import { ActivityInputComponent } from './activity-input/activity-input.component';
+import { ActivityInputModalComponent } from './activity-input/activity-input-modal.component';
 import { ActivitiesLatestComponent } from './activities-latest/activities-latest.component';
 import { ActivityRecurrentOverviewComponent } from './activity-recurrent-overview/activity-recurrent-overview.component';
 import { ActivityModalComponent } from './activity-modal/activity-modal.component';
@@ -26,7 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [ActivityDashboardComponent, ActivityInputComponent, ActivitiesLatestComponent, ActivityRecurrentOverviewComponent, ActivityModalComponent],
+  declarations: [ActivityDashboardComponent, ActivityInputModalComponent, ActivitiesLatestComponent, ActivityRecurrentOverviewComponent, ActivityModalComponent],
   imports: [
     CommonModule,
     MatInputModule,

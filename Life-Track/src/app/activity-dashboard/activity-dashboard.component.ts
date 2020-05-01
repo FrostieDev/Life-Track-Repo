@@ -3,6 +3,8 @@ import { RestApiUserActivityService } from '../shared/rest-api-user-activity.ser
 import { User } from '../models/user';
 import { Activity } from '../models/activity';
 import { IKeyValue } from '../models/keyValue';
+import { MatDialogConfig, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { ActivityInputModalComponent } from './activity-input/activity-input-modal.component';
 
 @Component({
   selector: 'app-activity-dashboard',
@@ -17,7 +19,11 @@ export class ActivityDashboardComponent implements OnInit {
   sortedActivities: IKeyValue = {};
   updateMsgs: string[] = [];
 
-  constructor(private restAPIUserActivity: RestApiUserActivityService) {
+  //Modal
+  matDialogRef: MatDialogRef<ActivityInputModalComponent>;
+
+  constructor(private restAPIUserActivity: RestApiUserActivityService,
+    public matDialog: MatDialog) {
 
   }
 
@@ -122,6 +128,23 @@ export class ActivityDashboardComponent implements OnInit {
       }
     });
     return sortedActivities;
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "activity-modal-component";
+
+    this.matDialogRef = this.matDialog.open(ActivityInputModalComponent, dialogConfig);
+
+    // When modal closes, sends update messages from modal session.
+    this.matDialogRef.afterClosed().subscribe((result) => {
+      if (result !== null) {
+        this.onUpdate(1);
+        this.onModification(result);
+      }
+    })
   }
 
 }

@@ -1,21 +1,36 @@
 <h1 class="text-center">Activity dashboard</h1>
 <div class="container">
-  <div *ngIf="updateMsgs.length > 0">
-    <div *ngFor="let updateMsg of updateMsgs" class="alert alert-success box-msg" role="alert">
-      {{updateMsg}}
+
+  <!-- Activity update message -->
+  <div class="row">
+    <div class="col" *ngIf="updateMsgs.length > 0">
+      <div *ngFor="let updateMsg of updateMsgs" class="alert alert-success box-msg" role="alert">
+        {{updateMsg}}
+      </div>
     </div>
   </div>
+
+  <!-- Button to input activity modal -->
   <div class="row">
     <div class="col">
-      <app-activity-input (update)='onUpdate($event)'></app-activity-input>
+      <div class="text-center mb-3">
+        <button type="button" class="btn btn-success" (click)="openModal()">ADD ACTIVITY</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
     </div>
 
-
+    <!-- Latest activities panel -->
     <div class="col">
       <app-activities-latest [updates]="updates" [activities]="activities"></app-activities-latest>
     </div>
   </div>
 
+  <!-- Recurrent overview panel -->
   <div class="row mt-3">
     <div class="col">
       <app-activity-recurrent-overview [sortedActivities]="sortedActivities" (updates)='onModification($event)'>

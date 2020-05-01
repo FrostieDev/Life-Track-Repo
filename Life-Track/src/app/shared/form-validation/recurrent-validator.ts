@@ -1,24 +1,44 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { Progression } from '../../models/activity';
+import { Progression, Recurrent } from '../../models/activity';
 
 //TODO: FIX : When an activity is added it does not validate consecutive.
-/** A hero's name can't match the given regular expression */
-export function recurrentValidator(showProgressionField: boolean): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-        if (control.value !== null) {
-            console.log(showProgressionField);
-            if (control.value.viewValue == Progression.Time
-                || control.value.viewValue == Progression.Repetition
-                || control.value.viewValue == Progression.Percentage) {
+export const recurrentValidator: ValidatorFn = (formGroup: AbstractControl) => {
+
+    if (formGroup.get("recurrent").value.value !== null
+        && formGroup.get("progression").value.value !== null) {
+        const recurrentChoiceValue = formGroup.get("recurrent").value.value;
+        const progressionChoiceValue = formGroup.get("progression").value.value;
+        const expectedRepetition = formGroup.get("expectedRepetition");
+        const expectedTime = formGroup.get("expectedTime");
+
+        if (progressionChoiceValue == Progression.Time) {
+            //Time value needs to be selected
+            console.log(expectedTime);
+            if (expectedTime.value == "") {
+                return { 'progressionValidatorError': true }
+            } else {
                 return null;
             }
-            else if (showProgressionField === true) {
-                return { 'recurrentValidatorError': true }
-            } else if (showProgressionField === false) {
-                console.log("Somehow this does not work")
-                return { 'recurrentValidatorError': true }
+        } else if (progressionChoiceValue == Progression.Repetition) {
+            //Repetition value needs to be selected
+            console.log(expectedRepetition);
+            if (expectedRepetition.value == "") {
+                return { 'progressionValidatorError': true }
+            } else {
+                return null;
             }
+        } else if (progressionChoiceValue == Progression.Percentage) {
+            //Percentage does not need a new selection
+            return null;
+        } else if (recurrentChoiceValue == Recurrent.No) {
+            return null;
         }
+        else {
+            console.log("Recurrent error with: " + progressionChoiceValue);
+            return { 'recurrentValidatorError': true }
+        }
+    } else {
+        return null;
     }
+};
 
-}
